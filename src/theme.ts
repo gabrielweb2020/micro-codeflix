@@ -21,13 +21,28 @@ const palette: PaletteOptions = {
 
 const theme = createMuiTheme({
     palette,
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            mobile: 600,
+            md: 960,
+            lg: 1280,
+            xl: 1920
+        },
+    },
     overrides: {
         MuiAppBar: {
             colorPrimary: {
                 backgroundColor: palette.background?.default
-            }
-        }
-    }
+            },
+        },
+        MuiDialog: {
+            paper: {
+                backgroundColor: palette.background?.default,
+            },
+        },
+    },
 });
 
 export default theme;
