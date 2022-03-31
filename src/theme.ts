@@ -1,9 +1,12 @@
 import { red } from "@material-ui/core/colors";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { PaletteOptions } from "@material-ui/core/styles/createPalette";
 import { Theme } from "@material-ui/core";
 
 const palette: PaletteOptions = {
+    primary: {
+        main: red["500"],
+    },
     background: {
         default: '#1f1f1f',
     },
@@ -19,7 +22,7 @@ const palette: PaletteOptions = {
     },  
 };
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette,
     breakpoints: {
         values: {
@@ -37,9 +40,24 @@ const theme = createMuiTheme({
                 backgroundColor: palette.background?.default
             },
         },
+        MuiDivider: {
+            root: {
+                backgroundColor: palette.text?.secondary,
+            },
+        },
         MuiDialog: {
             paper: {
                 backgroundColor: palette.background?.default,
+            },
+        },
+        MuiCssBaseline: {
+            "@global": {
+                "html, body, #root, #root>div:nth-child(2)": {
+                    height: "100%",
+                },
+                body: {
+                    overflowX: "hidden",
+                },
             },
         },
     },

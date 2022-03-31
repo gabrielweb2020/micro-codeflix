@@ -10,6 +10,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Arrow from "@material-ui/icons/KeyboardArrowDown";
 import useMenu from "../../../hooks/useMenu";
 import menuTheme from "../../../theme";
+import UserInformation from "../../UserInformation";
 
 const MenuAccount: React.FunctionComponent = () => {
     const {open, anchorEl, handleOpen, handleClose} = useMenu();
@@ -25,7 +26,7 @@ const MenuAccount: React.FunctionComponent = () => {
                 onClick={handleOpen}
                 style={{ cursor: "pointer" }}
                 >
-                    Nome do Usuário
+                    <UserInformation />
                     <Arrow />
                 </Box>
                 <Menu

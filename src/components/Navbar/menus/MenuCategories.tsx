@@ -4,11 +4,11 @@ import {
     MenuItem,
     MuiThemeProvider
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "react-router-dom";
 import routes, { MyRouteProps } from "../../../routes";
 import useMenu from "../../../hooks/useMenu";
 import menuTheme from "../../../theme";
-import { Link } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const listRoutes = {
     home: "Início",

@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import DialogSearch from ".";
 import DialogSearchContext from "./DialogSearchContext";
-import useIsSmallWindow from "../../hooks/useSmallWindow";
+import useIsSmallWindow from "../../hooks/useIsSmallWindow";
 
 export const DialogSearchProvider: React.FunctionComponent = (props) => {
     const [open, setOpen] = useState(false);
