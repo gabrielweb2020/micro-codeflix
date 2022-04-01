@@ -1,14 +1,13 @@
 import { useMemo } from "react";
 import { makeStyles } from "@material-ui/core";
-import Page from "../components/Page";
-import VideoThumbnail from "../components/Video/VideoThumbnail";
-import banner from "../static/img/banner.jpg";
-import bannerHalf from "../static/img/banner.jpg";
-import SliderArrow from "../components/Slider/SliderArrow";
-import Slider, { SliderProps } from "../components/Slider";
-import useIsSmallWindow from "../hooks/useIsSmallWindow";
-import Rating from "../components/Video/Rating";
-import Category from "../components/Video/Category";
+import banner from "../../static/img/banner.jpg";
+import bannerHalf from "../../static/img/banner.jpg";
+import SliderArrow from "../../../components/Slider/SliderArrow";
+import useIsSmallWindow from "../../../hooks/useIsSmallWindow";
+import VideoThumbnail from "../../../components/Video/VideoThumbnail";
+import Slider, { SliderProps } from "../../../components/Slider";
+import Rating from "../../../components/Video/Rating";
+import Category from "../../../components/Video/Category";
 
 const useStyles = makeStyles((theme) => ({
     rootImage: {
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home: React.FunctionComponent = (props) => {
+const Banner: React.FunctionComponent = (props) => {
     const classes = useStyles();
     const isSmallWindow = useIsSmallWindow();
     const sliderProps: SliderProps = useMemo(
@@ -69,7 +68,7 @@ const Home: React.FunctionComponent = (props) => {
     );
     const thumbnail = isSmallWindow ? bannerHalf : banner;
     return (
-        <Page>
+        <div>
             <Rating rating="18" />
             <Category>Filme</Category>
             <Slider {...sliderProps}>
@@ -106,8 +105,8 @@ const Home: React.FunctionComponent = (props) => {
                     />
                 </div>
             </Slider>
-        </Page>
+        </div>
     );
 };
 
-export default Home;
+export default Banner;
