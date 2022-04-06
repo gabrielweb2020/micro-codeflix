@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import banner from "../../static/img/banner.jpg";
 import bannerHalf from "../../static/img/banner.jpg";
@@ -6,11 +6,14 @@ import SliderArrow from "../../../components/Slider/SliderArrow";
 import useIsSmallWindow from "../../../hooks/useIsSmallWindow";
 import VideoThumbnail from "../../../components/Video/VideoThumbnail";
 import Slider, { SliderProps } from "../../../components/Slider";
-import Rating from "../../../components/Video/Rating";
-import Category from "../../../components/Video/Category";
+import BannerRating from "./BannerRating";
+import VideoContent from "./VideoContent";
+import VideoActionsMobile from "./VideoActions/VideoActionsMobile";
+import SliderStepper from "./SliderStepper";
 
 const useStyles = makeStyles((theme) => ({
     rootImage: {
+        position: 'relative',
         marginRight: "4px",
         "&:focus": {
             outlineColor: theme.palette.text.primary,
@@ -50,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 const Banner: React.FunctionComponent = (props) => {
     const classes = useStyles();
     const isSmallWindow = useIsSmallWindow();
+    const classSlider = classes.slider;
+    const [activeIndex, setActiveIndex] = useState(0);
     const sliderProps: SliderProps = useMemo(
         () => ({
             className: classes.slider,
@@ -63,48 +68,44 @@ const Banner: React.FunctionComponent = (props) => {
             arrows: !isSmallWindow,
             prevArrow: <SliderArrow dir="left"/>,
             nextArrow: <SliderArrow dir="right"/>,
+            beforeChange: (oldIndex, nextIndex) => {
+                setActiveIndex(nextIndex);
+            },
         }), 
-        [isSmallWindow]  
+        [isSmallWindow, classSlider]  
     );
-    const thumbnail = isSmallWindow ? bannerHalf : banner;
+    const thumbnail = isSmallWindow ? banner : bannerHalf;
+
     return (
         <div>
-            <Rating rating="18" />
-            <Category>Filme</Category>
             <Slider {...sliderProps}>
-                <div>
-                    <VideoThumbnail
-                        classes={{ root: classes.rootImage, image: classes.image }}
-                        ImgProps={{
-                            src: thumbnail
-                        }}
-                    />
-                </div>
-                <div>
-                    <VideoThumbnail
-                        classes={{ root: classes.rootImage, image: classes.image }}
-                        ImgProps={{
-                            src: thumbnail
-                        }}
-                    />
-                </div>
-                <div>
-                    <VideoThumbnail
-                        classes={{ root: classes.rootImage, image: classes.image }}
-                        ImgProps={{
-                            src: thumbnail
-                        }}
-                    />
-                </div>
-                <div>
-                    <VideoThumbnail
-                        classes={{ root: classes.rootImage, image: classes.image }}
-                        ImgProps={{
-                            src: thumbnail
-                        }}
-                    />
-                </div>
+                {Array.from(new Array(6).keys())
+                    .map(() => thumbnail)
+                    .map((v, index) => {
+                        const show = activeIndex === index;
+                        return (
+                            <VideoThumbnail
+                                classes={{ root: classes.rootImage, image: classes.image }}
+                                ImgProps={{
+                                    src: thumbnail
+                                }}
+                            >
+                                {show && <VideoContent 
+                                    video={{
+                                        id: '0000', 
+                                        title: 'Duro de Matar', 
+                                        categories: [
+                                            {id: '111', name: 'Ação', is_active: true}
+                                        ],
+                                    }}
+                                />}
+                                {show && <BannerRating rating="14" />}
+                            </VideoThumbnail>
+                        )
+                    })}
             </Slider>
+            {!isSmallWindow && <SliderStepper maxSteps={6} activeStep={activeIndex}/>}
+            <VideoActionsMobile/>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import clsx from "clsx";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: (props: RatingProps) => ({
         width: props.size ? props.size.width : "36px",
         heigth: props.size ? props.size.height : "36px",
@@ -35,7 +35,7 @@ const backgroundColors = {
     '18': "#000000"
 };
 
-interface RatingProps {
+export interface RatingProps {
     rating: 'L' | '10' | '12' | '14' | '16' | '18';
     className?: string;
     size?: { width: string; height: string };
