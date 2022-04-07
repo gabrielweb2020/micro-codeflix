@@ -1,4 +1,4 @@
-import { fade, IconButton, IconButtonProps, makeStyles } from "@material-ui/core";
+import { fade, makeStyles } from "@material-ui/core";
 import SliderArrowUnstyled from "./SliderArrowUnstyled";
 import clsx from "clsx";
 import { CustomArrowProps } from "react-slick";

@@ -57,7 +57,7 @@ const Banner: React.FunctionComponent = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const sliderProps: SliderProps = useMemo(
         () => ({
-            className: classes.slider,
+            className: classSlider,
             centerMode: true,
             dots: false,
             infinite: true,

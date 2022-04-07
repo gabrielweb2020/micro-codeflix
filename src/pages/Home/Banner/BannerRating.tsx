@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import Rating, { RatingProps } from "../../../components/Video/Rating";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         position: 'absolute',
         bottom: 0,
@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
             width: 212,
             padding: "5px 5px 5px 15px",
             borderLeft: "5px solid #999999",
-        }           
-    }
+        },           
+    },
 }));
 
 interface BannerRatingProps extends RatingProps {};
